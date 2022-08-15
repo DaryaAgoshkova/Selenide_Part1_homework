@@ -12,7 +12,6 @@ public class SelenideWiki {
     static void configure() {
         Configuration.baseUrl = "https://github.com";
         Configuration.browser = "chrome";
-        //Configuration.holdBrowserOpen = true;
     }
 
     @Test
