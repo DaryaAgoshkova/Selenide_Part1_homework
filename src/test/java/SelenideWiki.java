@@ -3,9 +3,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byLinkText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.*;
 
 public class SelenideWiki {
     @BeforeAll
@@ -16,10 +15,11 @@ public class SelenideWiki {
 
     @Test
     void findJUnit5Test() {
-       open("/selenide/selenide");
-       $("#wiki-tab").click();
-       $(".markdown-body").shouldHave(text("Soft assertions"));
-       $(byLinkText("Soft assertions")).click();
-       $(".markdown-body").shouldHave(text("Using JUnit5 extend"));
+        open("/selenide/selenide");
+        $$("ul li").findBy(text("Wiki")).click();
+        $("#wiki-pages-box button").click();
+        $("#wiki-pages-box").shouldHave(text("SoftAssertions"));
+        $(byText("SoftAssertions")).click();
+        $(".markdown-body").shouldHave(text("Using JUnit5 extend test class"));
     }
 }
